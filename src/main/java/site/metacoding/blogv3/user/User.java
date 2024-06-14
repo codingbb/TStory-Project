@@ -1,14 +1,10 @@
-package site.metacoding.blogv3.domain.user;
+package site.metacoding.blogv3.user;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -20,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@EntityListeners(AuditingEntityListener.class) // 이 부분 추가
+@Table(name = "user_tb")
 @Entity
 public class User {
 
@@ -38,9 +34,7 @@ public class User {
     @Column(length = 60, nullable = false)
     private String email;
 
-    @CreatedDate // insert 할때만 동작
+    @CreationTimestamp // insert 할때만 동작
     private LocalDateTime createDate;
-    @LastModifiedDate // update 할때만 동작
-    private LocalDateTime updateDate;
 
 }
